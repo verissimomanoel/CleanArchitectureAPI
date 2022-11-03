@@ -5,8 +5,8 @@ from fastapi import APIRouter, Depends, Response, status
 
 from app.core.containers import Container
 from app.core.exeptions.exceptions import NotFoundError
-from app.core.service.services import UserService
-from app.core.use_case.use_case_interfaces import IUserListUseCase
+from app.core.use_case.use_case_interfaces import IUserListUseCase, IGetUserByIdUseCase, ICreateUserUseCase, \
+    IDeleteUserByIdUseCase
 
 router = APIRouter()
 
@@ -17,7 +17,7 @@ def get_list(
         user_list_use_case: IUserListUseCase = Depends(Provide[Container.user_list_use_case]),
 ):
     try:
-        return user_list_use_case.get_users()
+        return user_list_use_case.execute()
     except Exception as ex:
         print(ex)
         return None
@@ -27,10 +27,10 @@ def get_list(
 @inject
 def get_by_id(
         user_id: int,
-        user_service: UserService = Depends(Provide[Container.user_service]),
+        get_user_by_id_use_case: IGetUserByIdUseCase = Depends(Provide[Container.get_user_by_id_use_case]),
 ):
     try:
-        return user_service.get_user_by_id(user_id)
+        return get_user_by_id_use_case.execute(user_id)
     except NotFoundError:
         return Response(status_code=status.HTTP_404_NOT_FOUND)
 
@@ -38,19 +38,19 @@ def get_by_id(
 @router.post("/users", status_code=status.HTTP_201_CREATED)
 @inject
 def add(
-        user_service: UserService = Depends(Provide[Container.user_service]),
+        create_user_use_case: ICreateUserUseCase = Depends(Provide[Container.create_user_use_case]),
 ):
-    return user_service.create_user()
+    return create_user_use_case.execute()
 
 
 @router.delete("/users/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
 @inject
 def remove(
         user_id: int,
-        user_service: UserService = Depends(Provide[Container.user_service]),
+        delete_user_by_id_use_case: IDeleteUserByIdUseCase = Depends(Provide[Container.delete_user_by_id_use_case]),
 ):
     try:
-        user_service.delete_user_by_id(user_id)
+        delete_user_by_id_use_case.execute(user_id)
     except NotFoundError:
         return Response(status_code=status.HTTP_404_NOT_FOUND)
     else:

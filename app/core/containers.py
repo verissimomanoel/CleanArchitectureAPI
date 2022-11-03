@@ -2,10 +2,9 @@
 
 from dependency_injector import containers, providers
 
-from .database import Database
 from app.infrastructure.repository.repositories import UserSQLiteRepository
-from app.core.service.services import UserService
-from .use_case.use_cases import UserListUseCase
+from .database import Database
+from .use_case.use_cases import UserListUseCase, GetUserByIdUseCase, CreateUserUseCase, DeleteUserByIdUseCase
 
 
 class Container(containers.DeclarativeContainer):
@@ -23,12 +22,22 @@ class Container(containers.DeclarativeContainer):
         session_factory=db.provided.session,
     )
 
-    user_service = providers.Factory(
-        UserService,
+    user_list_use_case = providers.Factory(
+        UserListUseCase,
         user_repository=user_repository,
     )
 
-    user_list_use_case = providers.Factory(
-        UserListUseCase,
+    get_user_by_id_use_case = providers.Factory(
+        GetUserByIdUseCase,
+        user_repository=user_repository,
+    )
+
+    create_user_use_case = providers.Factory(
+        CreateUserUseCase,
+        user_repository=user_repository,
+    )
+
+    delete_user_by_id_use_case = providers.Factory(
+        DeleteUserByIdUseCase,
         user_repository=user_repository,
     )
