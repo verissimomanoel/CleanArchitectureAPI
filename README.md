@@ -13,3 +13,5 @@ Project example for Clean Architecture and Python
 - [ ] Write about design patterns used
 - [ ] Split container injector by modules
 - [ ] Add CRUD operations for another entity
+- [ ] Add pydocs in all project
+- [ ] Add unit tests in all project (80% coverage)
