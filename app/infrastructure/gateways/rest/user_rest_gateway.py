@@ -1,11 +1,12 @@
 """Endpoints module."""
 
-from fastapi import APIRouter, Depends, Response, status
 from dependency_injector.wiring import inject, Provide
+from fastapi import APIRouter, Depends, Response, status
 
-from .containers import Container
-from app.core.service.services import UserService
+from app.core.containers import Container
 from app.core.exeptions.exceptions import NotFoundError
+from app.core.service.services import UserService
+from app.core.use_case.use_case_interfaces import IUserListUseCase
 
 router = APIRouter()
 
@@ -13,9 +14,13 @@ router = APIRouter()
 @router.get("/users")
 @inject
 def get_list(
-        user_service: UserService = Depends(Provide[Container.user_service]),
+        user_list_use_case: IUserListUseCase = Depends(Provide[Container.user_list_use_case]),
 ):
-    return user_service.get_users()
+    try:
+        return user_list_use_case.get_users()
+    except Exception as ex:
+        print(ex)
+        return None
 
 
 @router.get("/users/{user_id}")

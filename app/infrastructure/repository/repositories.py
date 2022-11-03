@@ -9,7 +9,7 @@ from app.core.models import User
 from app.core.repository.repositories import IUserRepository
 
 
-class UserRepository(IUserRepository):
+class UserSQLiteRepository(IUserRepository):
 
     def __init__(self, session_factory: Callable[..., AbstractContextManager[Session]]) -> None:
         self.session_factory = session_factory

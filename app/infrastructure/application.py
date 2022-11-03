@@ -2,8 +2,8 @@
 
 from fastapi import FastAPI
 
-from .containers import Container
-from . import endpoints
+from app.core.containers import Container
+from app.infrastructure.gateways.rest import user_rest_gateway
 
 
 def create_app() -> FastAPI:
@@ -14,7 +14,7 @@ def create_app() -> FastAPI:
 
     app = FastAPI()
     app.container = container
-    app.include_router(endpoints.router)
+    app.include_router(user_rest_gateway.router)
     return app
 
 
