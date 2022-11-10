@@ -3,7 +3,7 @@
 from dependency_injector.wiring import inject, Provide
 from fastapi import APIRouter, Depends, Response, status
 
-from app.core.containers import Container
+from app.infrastructure.containers import Container
 from app.core.exeptions.exceptions import NotFoundError
 from app.core.use_case.use_case_interfaces import IUserListUseCase, IGetUserByIdUseCase, ICreateUserUseCase, \
     IDeleteUserByIdUseCase

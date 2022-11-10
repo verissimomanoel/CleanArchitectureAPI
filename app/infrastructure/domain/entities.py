@@ -2,10 +2,10 @@
 
 from sqlalchemy import Column, String, Boolean, Integer
 
-from .database import Base
+from app.infrastructure.database import Base
 
 
-class User(Base):
+class UserEntity(Base):
 
     __tablename__ = "users"
 

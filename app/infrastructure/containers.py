@@ -3,8 +3,8 @@
 from dependency_injector import containers, providers
 
 from app.infrastructure.repository.repositories import UserSQLiteRepository
-from .database import Database
-from .use_case.use_cases import UserListUseCase, GetUserByIdUseCase, CreateUserUseCase, DeleteUserByIdUseCase
+from app.infrastructure.database import Database
+from app.core.use_case.use_cases import UserListUseCase, GetUserByIdUseCase, CreateUserUseCase, DeleteUserByIdUseCase
 
 
 class Container(containers.DeclarativeContainer):

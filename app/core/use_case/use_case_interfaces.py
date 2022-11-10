@@ -1,7 +1,7 @@
 from abc import ABC
 from typing import Iterator
 
-from app.core.models import User
+from app.core.domain.user import User
 from app.core.repository.repositories import IUserRepository
 
 

@@ -2,7 +2,7 @@
 from abc import ABC, abstractmethod
 from typing import Iterator
 
-from app.core.models import User
+from app.core.domain.user import User
 
 
 class IUserRepository(ABC):
@@ -15,7 +15,7 @@ class IUserRepository(ABC):
         raise NotImplemented("The method get_by_id needs to be implemented by all subclasses!")
 
     @abstractmethod
-    def add(self, email: str, password: str, is_active: bool = True) -> User:
+    def add(self, user: User) -> User:
         raise NotImplemented("The method add needs to be implemented by all subclasses!")
 
     @abstractmethod

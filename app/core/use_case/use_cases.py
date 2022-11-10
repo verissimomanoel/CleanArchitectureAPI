@@ -1,7 +1,7 @@
 from typing import Iterator
 from uuid import uuid4
 
-from app.core.models import User
+from app.core.domain.user import User
 from app.core.repository.repositories import IUserRepository
 from app.core.use_case.use_case_interfaces import IUserListUseCase, IGetUserByIdUseCase, ICreateUserUseCase, \
     IDeleteUserByIdUseCase
@@ -29,7 +29,13 @@ class CreateUserUseCase(ICreateUserUseCase):
 
     def execute(self) -> User:
         uid = uuid4()
-        return self._repository.add(email=f"{uid}@email.com", password="pwd")
+        user = User(
+            id=None,
+            is_active=None,
+            email=f"{uid}@email.com",
+            password="pwd"
+        )
+        return self._repository.add(user)
 
 
 class DeleteUserByIdUseCase(IDeleteUserByIdUseCase):

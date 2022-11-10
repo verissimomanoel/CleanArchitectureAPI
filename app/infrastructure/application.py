@@ -2,7 +2,7 @@
 
 from fastapi import FastAPI
 
-from app.core.containers import Container
+from app.infrastructure.containers import Container
 from app.infrastructure.gateways.rest import user_rest_gateway
 
 

@@ -6,7 +6,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from app.core.exeptions.exceptions import UserNotFoundError
-from app.core.models import User
+from app.infrastructure.domain.entities import UserEntity
 from app.infrastructure.application import app
 from app.infrastructure.repository.repositories import UserSQLiteRepository
 
@@ -19,8 +19,8 @@ def client():
 def test_get_list(client):
     repository_mock = mock.Mock(spec=UserSQLiteRepository)
     repository_mock.get_all.return_value = [
-        User(id=1, email="test1@email.com", hashed_password="pwd", is_active=True),
-        User(id=2, email="test2@email.com", hashed_password="pwd", is_active=False),
+        UserEntity(id=1, email="test1@email.com", hashed_password="pwd", is_active=True),
+        UserEntity(id=2, email="test2@email.com", hashed_password="pwd", is_active=False),
     ]
 
     with app.container.user_repository.override(repository_mock):
@@ -36,7 +36,7 @@ def test_get_list(client):
 
 def test_get_by_id(client):
     repository_mock = mock.Mock(spec=UserSQLiteRepository)
-    repository_mock.get_by_id.return_value = User(
+    repository_mock.get_by_id.return_value = UserEntity(
         id=1,
         email="xyz@email.com",
         hashed_password="pwd",
@@ -65,7 +65,7 @@ def test_get_by_id_404(client):
 @mock.patch("app.core.service.services.uuid4", return_value="xyz")
 def test_add(_, client):
     repository_mock = mock.Mock(spec=UserSQLiteRepository)
-    repository_mock.add.return_value = User(
+    repository_mock.add.return_value = UserEntity(
         id=1,
         email="xyz@email.com",
         hashed_password="pwd",
