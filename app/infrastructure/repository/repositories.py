@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from app.core.exeptions.exceptions import UserNotFoundError
 from app.core.domain.user import User
 from app.infrastructure.domain.entities import UserEntity
-from app.core.repository.repositories import IUserRepository
+from app.core.gateways.repositories import IUserRepository
 
 
 class UserSQLiteRepository(IUserRepository):

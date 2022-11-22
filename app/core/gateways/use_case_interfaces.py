@@ -2,7 +2,7 @@ from abc import ABC
 from typing import Iterator
 
 from app.core.domain.user import User
-from app.core.repository.repositories import IUserRepository
+from app.core.gateways.repositories import IUserRepository
 
 
 class IUserListUseCase(ABC):

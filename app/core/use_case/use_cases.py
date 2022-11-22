@@ -2,8 +2,8 @@ from typing import Iterator
 from uuid import uuid4
 
 from app.core.domain.user import User
-from app.core.repository.repositories import IUserRepository
-from app.core.use_case.use_case_interfaces import IUserListUseCase, IGetUserByIdUseCase, ICreateUserUseCase, \
+from app.core.gateways.repositories import IUserRepository
+from app.core.gateways.use_case_interfaces import IUserListUseCase, IGetUserByIdUseCase, ICreateUserUseCase, \
     IDeleteUserByIdUseCase
 
 

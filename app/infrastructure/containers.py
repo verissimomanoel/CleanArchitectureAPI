@@ -1,5 +1,7 @@
 """Containers module."""
 
+import pkg_resources
+
 from dependency_injector import containers, providers
 
 from app.infrastructure.repository.repositories import UserSQLiteRepository
@@ -10,10 +12,12 @@ from app.core.use_case.use_cases import UserListUseCase, GetUserByIdUseCase, Cre
 class Container(containers.DeclarativeContainer):
 
     wiring_config = containers.WiringConfiguration(
-        modules=["..infrastructure.gateways.rest.user_rest_gateway"]
+        modules=[".external.rest.user_rest_gateway"]
     )
 
-    config = providers.Configuration(yaml_files=["config.yml"])
+    config = providers.Configuration(yaml_files=[
+        pkg_resources.resource_filename(__name__, "../config.yml")
+    ])
 
     db = providers.Singleton(Database, db_url=config.db.url)
 

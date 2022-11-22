@@ -4,7 +4,7 @@ services:
 
   webapp:
     build: ./
-    image: webapp
+    image: cleanarchapi
     ports:
       - "8000:8000"
     volumes:

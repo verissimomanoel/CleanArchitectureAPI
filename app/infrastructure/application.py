@@ -3,7 +3,7 @@
 from fastapi import FastAPI
 
 from app.infrastructure.containers import Container
-from app.infrastructure.gateways.rest import user_rest_gateway
+from app.infrastructure.external.rest import user_rest_gateway
 
 
 def create_app() -> FastAPI:

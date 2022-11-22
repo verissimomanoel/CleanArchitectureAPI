@@ -10,4 +10,7 @@ COPY . /code/
 RUN pip install --upgrade pip \
  && pip install -r requirements.txt
 
-CMD uvicorn webapp.application:app --host ${HOST} --port ${PORT}
+RUN ls
+RUN ls app
+
+CMD uvicorn app.infrastructure.application:app --host ${HOST} --port ${PORT}
