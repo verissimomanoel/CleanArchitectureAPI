@@ -29,8 +29,8 @@ class Database:
     def create_database(self) -> None:
         Base.metadata.create_all(self._engine)
 
-    @contextmanager
-    def session(self) -> Callable[..., AbstractContextManager[Session]]:
+    @contextmanager # type: ignore[arg-type]
+    def session(self) -> Callable[..., AbstractContextManager[Session]]: # type: ignore[misc]
         session: Session = self._session_factory()
         try:
             yield session

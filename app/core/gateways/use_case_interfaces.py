@@ -1,5 +1,5 @@
 from abc import ABC
-from typing import Iterator
+from typing import Iterator, List
 
 from app.core.domain.user import User
 from app.core.gateways.repositories import IUserRepository
@@ -9,7 +9,7 @@ class IUserListUseCase(ABC):
     def __init__(self, user_repository: IUserRepository) -> None:
         self._repository: IUserRepository = user_repository
 
-    def execute(self) -> Iterator[User]:
+    def execute(self) -> List[User]:
         raise NotImplementedError(
             "The method execute needs to be implemented by all subclasses!"
         )

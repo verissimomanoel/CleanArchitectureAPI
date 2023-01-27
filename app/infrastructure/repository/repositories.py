@@ -15,11 +15,11 @@ class UserSQLiteRepository(IUserRepository):
     def __init__(self, session_factory: Callable[..., AbstractContextManager[Session]]) -> None:  # noqa E501
         self.session_factory = session_factory
 
-    def get_all(self) -> Iterator[User]:
+    def get_all(self) -> List[User]:
         with self.session_factory() as session:
             entities = session.query(UserEntity).all()
 
-            return self.__create_user_objects(entities)
+        return self.__create_user_objects(entities)
 
     def get_by_id(self, user_id: int) -> User:
         with self.session_factory() as session:
@@ -62,7 +62,7 @@ class UserSQLiteRepository(IUserRepository):
             session.delete(entity)
             session.commit()
 
-    def __create_user_objects(self, entities: List[UserEntity]):
+    def __create_user_objects(self, entities: List[UserEntity]) -> List[User]:
         return [
             User(
                 id=e.id,

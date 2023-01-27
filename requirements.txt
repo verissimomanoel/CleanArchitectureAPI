@@ -8,3 +8,4 @@ requests
 pytest-cov
 mypy
 flake8
+types-setuptools

@@ -21,7 +21,7 @@ class Container(containers.DeclarativeContainer):
         pkg_resources.resource_filename(__name__, "../config.yml")
     ])
 
-    db = providers.Singleton(Database, db_url=config.db.url)
+    db: providers.Singleton[Database] = providers.Singleton(Database, db_url=config.db.url)
 
     user_repository = providers.Factory(
         UserSQLiteRepository,

@@ -1,13 +1,13 @@
 """Repositories module."""
 from abc import ABC, abstractmethod
-from typing import Iterator
+from typing import List
 
 from app.core.domain.user import User
 
 
 class IUserRepository(ABC):
     @abstractmethod
-    def get_all(self) -> Iterator[User]:
+    def get_all(self) -> List[User]:
         raise NotImplementedError(
             "The method get_all needs to be implemented by all subclasses!"
         )

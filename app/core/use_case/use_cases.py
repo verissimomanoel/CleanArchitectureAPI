@@ -1,19 +1,19 @@
-from typing import Iterator
+from typing import List
 from uuid import uuid4
 
 from app.core.domain.user import User
 from app.core.gateways.repositories import IUserRepository
-from app.core.gateways.use_case_interfaces import IUserListUseCase
-from app.core.gateways.use_case_interfaces import IGetUserByIdUseCase
 from app.core.gateways.use_case_interfaces import ICreateUserUseCase
 from app.core.gateways.use_case_interfaces import IDeleteUserByIdUseCase
+from app.core.gateways.use_case_interfaces import IGetUserByIdUseCase
+from app.core.gateways.use_case_interfaces import IUserListUseCase
 
 
 class UserListUseCase(IUserListUseCase):
     def __init__(self, user_repository: IUserRepository) -> None:
         super(UserListUseCase, self).__init__(user_repository)
 
-    def execute(self) -> Iterator[User]:
+    def execute(self) -> List[User]:
         return self._repository.get_all()
 
 
