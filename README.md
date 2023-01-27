@@ -15,3 +15,4 @@ Project example for Clean Architecture and Python
 - [ ] Add CRUD operations for another entity
 - [ ] Add pydocs in all project
 - [ ] Add unit tests in all project (80% coverage)
+- [ ] Split requirements.txt into modules core and infrastructure
