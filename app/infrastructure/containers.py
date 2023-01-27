@@ -1,12 +1,14 @@
 """Containers module."""
 
 import pkg_resources
-
 from dependency_injector import containers, providers
 
-from app.infrastructure.repository.repositories import UserSQLiteRepository
+from app.core.use_case.use_cases import UserListUseCase
+from app.core.use_case.use_cases import GetUserByIdUseCase
+from app.core.use_case.use_cases import CreateUserUseCase
+from app.core.use_case.use_cases import DeleteUserByIdUseCase
 from app.infrastructure.database import Database
-from app.core.use_case.use_cases import UserListUseCase, GetUserByIdUseCase, CreateUserUseCase, DeleteUserByIdUseCase
+from app.infrastructure.repository.repositories import UserSQLiteRepository
 
 
 class Container(containers.DeclarativeContainer):

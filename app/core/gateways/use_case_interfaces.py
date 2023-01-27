@@ -10,7 +10,9 @@ class IUserListUseCase(ABC):
         self._repository: IUserRepository = user_repository
 
     def execute(self) -> Iterator[User]:
-        raise NotImplemented("The method execute needs to be implemented by all subclasses!")
+        raise NotImplementedError(
+            "The method execute needs to be implemented by all subclasses!"
+        )
 
 
 class IGetUserByIdUseCase(ABC):
@@ -18,7 +20,9 @@ class IGetUserByIdUseCase(ABC):
         self._repository: IUserRepository = user_repository
 
     def execute(self, user_id: int) -> User:
-        raise NotImplemented("The method execute needs to be implemented by all subclasses!")
+        raise NotImplementedError(
+            "The method execute needs to be implemented by all subclasses!"
+        )
 
 
 class ICreateUserUseCase(ABC):
@@ -26,7 +30,9 @@ class ICreateUserUseCase(ABC):
         self._repository: IUserRepository = user_repository
 
     def execute(self) -> User:
-        raise NotImplemented("The method execute needs to be implemented by all subclasses!")
+        raise NotImplementedError(
+            "The method execute needs to be implemented by all subclasses!"
+        )
 
 
 class IDeleteUserByIdUseCase(ABC):
@@ -34,4 +40,6 @@ class IDeleteUserByIdUseCase(ABC):
         self._repository: IUserRepository = user_repository
 
     def execute(self, user_id: int) -> None:
-        raise NotImplemented("The method execute needs to be implemented by all subclasses!")
+        raise NotImplementedError(
+            "The method execute needs to be implemented by all subclasses!"
+        )

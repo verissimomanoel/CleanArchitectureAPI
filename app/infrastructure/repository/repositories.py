@@ -12,7 +12,7 @@ from app.core.gateways.repositories import IUserRepository
 
 class UserSQLiteRepository(IUserRepository):
 
-    def __init__(self, session_factory: Callable[..., AbstractContextManager[Session]]) -> None:
+    def __init__(self, session_factory: Callable[..., AbstractContextManager[Session]]) -> None:  # noqa E501
         self.session_factory = session_factory
 
     def get_all(self) -> Iterator[User]:
@@ -23,7 +23,8 @@ class UserSQLiteRepository(IUserRepository):
 
     def get_by_id(self, user_id: int) -> User:
         with self.session_factory() as session:
-            user_entity: UserEntity = session.query(UserEntity).filter(UserEntity.id == user_id).first()
+            user_entity: UserEntity = session.\
+                query(UserEntity).filter(UserEntity.id == user_id).first()
 
             if not user_entity:
                 raise UserNotFoundError(user_id)
@@ -54,7 +55,8 @@ class UserSQLiteRepository(IUserRepository):
 
     def delete_by_id(self, user_id: int) -> None:
         with self.session_factory() as session:
-            entity: UserEntity = session.query(UserEntity).filter(UserEntity.id == user_id).first()
+            entity: UserEntity = session.query(UserEntity).\
+                filter(UserEntity.id == user_id).first()
             if not entity:
                 raise UserNotFoundError(user_id)
             session.delete(entity)

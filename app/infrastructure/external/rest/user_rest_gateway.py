@@ -5,8 +5,10 @@ from fastapi import APIRouter, Depends, Response, status
 
 from app.infrastructure.containers import Container
 from app.core.exeptions.exceptions import NotFoundError
-from app.core.gateways.use_case_interfaces import IUserListUseCase, IGetUserByIdUseCase, ICreateUserUseCase, \
-    IDeleteUserByIdUseCase
+from app.core.gateways.use_case_interfaces import IUserListUseCase
+from app.core.gateways.use_case_interfaces import IGetUserByIdUseCase
+from app.core.gateways.use_case_interfaces import ICreateUserUseCase
+from app.core.gateways.use_case_interfaces import IDeleteUserByIdUseCase
 
 router = APIRouter()
 
@@ -14,7 +16,7 @@ router = APIRouter()
 @router.get("/users")
 @inject
 def get_list(
-        user_list_use_case: IUserListUseCase = Depends(Provide[Container.user_list_use_case]),
+        user_list_use_case: IUserListUseCase = Depends(Provide[Container.user_list_use_case]),  # noqa E501
 ):
     try:
         return user_list_use_case.execute()
@@ -27,7 +29,7 @@ def get_list(
 @inject
 def get_by_id(
         user_id: int,
-        get_user_by_id_use_case: IGetUserByIdUseCase = Depends(Provide[Container.get_user_by_id_use_case]),
+        get_user_by_id_use_case: IGetUserByIdUseCase = Depends(Provide[Container.get_user_by_id_use_case]),  # noqa E501
 ):
     try:
         return get_user_by_id_use_case.execute(user_id)
@@ -38,7 +40,7 @@ def get_by_id(
 @router.post("/users", status_code=status.HTTP_201_CREATED)
 @inject
 def add(
-        create_user_use_case: ICreateUserUseCase = Depends(Provide[Container.create_user_use_case]),
+        create_user_use_case: ICreateUserUseCase = Depends(Provide[Container.create_user_use_case]),  # noqa E501
 ):
     return create_user_use_case.execute()
 
@@ -47,7 +49,7 @@ def add(
 @inject
 def remove(
         user_id: int,
-        delete_user_by_id_use_case: IDeleteUserByIdUseCase = Depends(Provide[Container.delete_user_by_id_use_case]),
+        delete_user_by_id_use_case: IDeleteUserByIdUseCase = Depends(Provide[Container.delete_user_by_id_use_case]),  # noqa E501
 ):
     try:
         delete_user_by_id_use_case.execute(user_id)

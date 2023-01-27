@@ -3,8 +3,10 @@ from uuid import uuid4
 
 from app.core.domain.user import User
 from app.core.gateways.repositories import IUserRepository
-from app.core.gateways.use_case_interfaces import IUserListUseCase, IGetUserByIdUseCase, ICreateUserUseCase, \
-    IDeleteUserByIdUseCase
+from app.core.gateways.use_case_interfaces import IUserListUseCase
+from app.core.gateways.use_case_interfaces import IGetUserByIdUseCase
+from app.core.gateways.use_case_interfaces import ICreateUserUseCase
+from app.core.gateways.use_case_interfaces import IDeleteUserByIdUseCase
 
 
 class UserListUseCase(IUserListUseCase):
