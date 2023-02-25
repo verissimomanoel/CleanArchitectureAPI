@@ -16,3 +16,8 @@ Project example for Clean Architecture and Python
 - [ ] Add pydocs in all project
 - [ ] Add unit tests in all project (80% coverage)
 - [ ] Split requirements.txt into modules core and infrastructure
+
+
+## References
+https://github.com/pycabook/pycabook
+https://github.com/pycabook/rentomatic
