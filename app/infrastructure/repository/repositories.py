@@ -4,7 +4,7 @@ from typing import Callable, Iterator, List
 
 from sqlalchemy.orm import Session
 
-from app.core.exeptions.exceptions import UserNotFoundError
+from app.core.exceptions.exceptions import UserNotFoundError
 from app.core.domain.user import User
 from app.infrastructure.domain.entities import UserEntity
 from app.core.gateways.repositories import IUserRepository
